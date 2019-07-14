@@ -1,0 +1,51 @@
+/* card */
+._card {}
+
+/* form */
+._form {
+    display: flex;
+    flex-direction: column;
+}
+._form_item {
+    display: flex;
+    flex-direction: column;
+}
+._form_button_group {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 50px;
+}
+
+._form_item_button {
+    margin: 0 20px;
+}
+
+/* label */
+._label {
+    padding: 10px 0;
+}
+
+/* input */
+._input {
+    font-size: 1.1em;
+    padding: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: grey;
+    border-width: thin;
+    outline: none;
+    outline-offset: unset;
+}
+._input:focus {
+    border-color: #1888C6;
+}
+
+/* button */
+._button {
+    font-size: 1.3em;
+    border-radius: 5px;
+    border-style: none;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+}

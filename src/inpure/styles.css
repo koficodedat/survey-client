@@ -1,0 +1,173 @@
+.app_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 55px;
+    padding: 0 20px;
+}
+
+.app_bar_name {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.app_bar_button {
+    font-size: 1em;
+    border: thin solid grey;
+    margin: 0 5px;
+}
+
+.profile_name {
+    font-weight: bold;
+}
+
+.root_section {
+    display: flex;
+    flex-direction: column;
+    padding: 100px 15% 0 15%;
+    height: calc(100vh - 55px);
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    border: thin solid grey;
+    padding: 15px 15px;
+}
+
+.login_label {}
+
+.login_input {
+    margin-bottom: 15px;
+}
+
+.login_button_section {
+    display: flex;
+    justify-content: center;
+}
+
+.login_button {
+    width: 40%;
+}
+
+.login_card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    border: thin solid grey;
+    border-radius: 5px;
+}
+
+.create_survey_button {
+    font-size: 2.5em;
+    width: 50px;
+    height: 50px;
+    border-radius: 0;
+    padding: 0;
+}
+
+.create_survey_button:hover {
+    color: #1888C6;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.survey {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    border: thin solid grey;
+    border-radius: 10px;
+    width: 100%;
+    padding: 20px 15px;
+    margin: 15px 0;
+}
+
+.survey_question {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px 0;
+}
+
+.survey_question_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.survey_question_label {
+    font-size: 1.3em;
+}
+
+.survey_cancel_button {
+    font-size: 1em;
+    border: thin solid grey;
+    height: 35px;
+}
+
+.survey_answer {
+    margin: 10px 0;
+}
+
+.survey_options {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.survey_options_label {
+    font-size: 1.2em;
+}
+
+.survey_option {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.survey_option_in_preview {
+    margin: 10px 0;
+}
+
+.survey_option_item {
+
+}
+
+.survey_option_input {
+    width: 80%;
+}
+
+.survey_option_button {}
+
+.survey_option_preview {
+    padding: 5px 0;
+}
+
+.survey_option_radio_input {
+    margin-right: 10px;
+}
+
+.survey_option_label {}
+
+.survey_buttons {
+    display: flex;
+    justify-content: flex-end;
+    padding: 15px 0 7px 0;
+}
+
+.survey_button {
+    margin-left: 10px;
+    font-size: 1em;
+}
+
+.no_survey_label {
+    font-size: 1.3em;
+}
