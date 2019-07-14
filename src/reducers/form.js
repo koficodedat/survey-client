@@ -1,8 +1,8 @@
 import clone from 'lodash.clonedeep';
 import get from 'lodash.get';
 import set from 'lodash.set';
-import uniq from 'lodash.uniqueid';
 
+import { uniqid } from '../utils/util';
 import { UPDATE_LOGIN_INPUT, ADD_OPTION_TO_SURVEY_FORM, REMOVE_OPTION_FROM_SURVEY_FORM, UPDATE_SURVEY_INPUT, RESET_SURVEY_FORM } from '../actions/types';
 
 import init_state from '../store/state';
@@ -10,7 +10,7 @@ import init_state from '../store/state';
 const form = (state = init_state.forms, action) => {
     const cloned = clone(state);
     const { type, payload = {} } = action;
-    const { form_id, id, path, value } = payload;
+    const { id, path, value } = payload;
 
     let survey_options = [];
 
@@ -22,11 +22,9 @@ const form = (state = init_state.forms, action) => {
         case ADD_OPTION_TO_SURVEY_FORM:
             survey_options = get(cloned.survey, 'options', []);
             survey_options.push({
-                _id: uniq('survey_option_'),
+                _id: uniqid(),
                 value: '',
             });
-
-            set(cloned, [form_id, 'options'], survey_options);
 
             return cloned;
         case REMOVE_OPTION_FROM_SURVEY_FORM:
@@ -43,7 +41,7 @@ const form = (state = init_state.forms, action) => {
                 },
                 options: [
                     {
-                        _id: uniq('survey_option_'),
+                        _id: uniqid(),
                         value: '',
                     }
                 ]

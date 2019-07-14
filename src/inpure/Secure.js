@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash.get';
 
 import AppBar from './AppBar';
+import FooterBar from './FooterBar';
 
 import { validateProfile } from '../actions/profile';
 
@@ -25,6 +26,7 @@ class Secure extends Component {
                 <section className='root_section'>
                     {this.props.children}
                 </section>
+                <FooterBar/>
             </React.Fragment> 
         );
     }

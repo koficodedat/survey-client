@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Input = props => {
-    const { css, id, type, name, checked, placeholder, disabled, onUpdate, value } = props;
+    const { css, id, type, name, checked, placeholder, disabled, onUpdate, min, max, value } = props;
     
     return (
         <input
@@ -13,6 +13,8 @@ const Input = props => {
             placeholder={placeholder}
             disabled={disabled}
             onChange={onUpdate}
+            min={min}
+            max={max}
             value={value}
         />
     )

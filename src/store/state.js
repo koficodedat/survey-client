@@ -1,4 +1,4 @@
-import uniq from 'lodash.uniqueid';
+import { uniqid } from '../utils/util';
 
 export default {
     profile: {
@@ -25,10 +25,14 @@ export default {
             },
             options: [
                 {
-                    _id: uniq('survey_option_'),
+                    _id: uniqid(),
                     value: '',
                 }
             ]
         }
+    },
+    pageable: {
+        number: 1,
+        size: 5,
     }
 }

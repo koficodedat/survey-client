@@ -1,25 +1,6 @@
 /* card */
 ._card {}
 
-/* form */
-._form {
-    display: flex;
-    flex-direction: column;
-}
-._form_item {
-    display: flex;
-    flex-direction: column;
-}
-._form_button_group {
-    display: flex;
-    justify-content: flex-end;
-    padding-top: 50px;
-}
-
-._form_item_button {
-    margin: 0 20px;
-}
-
 /* label */
 ._label {
     padding: 10px 0;
@@ -38,6 +19,10 @@
 }
 ._input:focus {
     border-color: #1888C6;
+}
+
+._input:disabled {
+    cursor: not-allowed;
 }
 
 /* button */

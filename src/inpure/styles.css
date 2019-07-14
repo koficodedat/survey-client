@@ -1,10 +1,15 @@
 .app_bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 55px;
     padding: 0 20px;
+    background-color: white;
 }
 
 .app_bar_name {
@@ -25,8 +30,8 @@
 .root_section {
     display: flex;
     flex-direction: column;
-    padding: 100px 15% 0 15%;
-    height: calc(100vh - 55px);
+    margin: 100px 10%;
+    height: calc(100% - 55px);
 }
 
 .login {
@@ -34,9 +39,8 @@
     flex-direction: column;
     border: thin solid grey;
     padding: 15px 15px;
+    border-radius: 10px;
 }
-
-.login_label {}
 
 .login_input {
     margin-bottom: 15px;
@@ -49,17 +53,6 @@
 
 .login_button {
     width: 40%;
-}
-
-.login_card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 300px;
-    padding: 10px;
-    border: thin solid grey;
-    border-radius: 5px;
 }
 
 .create_survey_button {
@@ -137,15 +130,9 @@
     margin: 10px 0;
 }
 
-.survey_option_item {
-
-}
-
 .survey_option_input {
     width: 80%;
 }
-
-.survey_option_button {}
 
 .survey_option_preview {
     padding: 5px 0;
@@ -154,8 +141,6 @@
 .survey_option_radio_input {
     margin-right: 10px;
 }
-
-.survey_option_label {}
 
 .survey_buttons {
     display: flex;
@@ -170,4 +155,48 @@
 
 .no_survey_label {
     font-size: 1.3em;
+}
+
+.footer_bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 55px;
+    padding: 0 20px;
+    background-color: white;
+}
+
+.page_item{
+    margin-left: 10px;
+}
+
+.page_size {
+    display: flex;
+    width: 100px;
+    justify-content: space-between;
+}
+
+.page_size_label {}
+
+.page_size_input {
+    text-align: center;
+    width: 50%;
+}
+
+.page_number {
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+}
+
+.page_number_label {}
+
+.page_number_input {
+    text-align: center;
+    width: 35%;
 }

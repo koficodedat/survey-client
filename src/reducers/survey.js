@@ -22,7 +22,7 @@ const survey = (state = init_state.survey, action) => {
     
             return cloned;
         case TOGGLE_SURVEY:
-            const show = get(cloned, `items.${id}.show`, true);
+            const show = get(cloned, `items.${id}.show`, false);
 
             set(cloned, `items.${id}.show`, !show);
     

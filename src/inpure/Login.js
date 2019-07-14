@@ -16,10 +16,9 @@ import { saveProfile } from '../apis/api';
 class Login extends Component {
     render(){
         const { label, type, placeholder, value } = this.props.form;
-        const css = '';
 
         return (
-            <Card css={`${css} login`}>
+            <Card css='login'>
                 <Label css='login_label' htmlFor='login_name'>{label}</Label>
                 <Input 
                     css='login_input' 
@@ -33,24 +32,6 @@ class Login extends Component {
                     <Button css='primary_button login_button' onClick={this.props.actions.saveProfile}> Sign In </Button>
                 </section>
             </Card>
-            // <Card 
-            //     css='login_card'
-            // >
-            //     <Form 
-            //         formId='login'
-            //         inputs={this.props.form.inputs}
-            //         buttons={[
-            //             {
-            //                 _id: 0,
-            //                 css: 'primary_button',
-            //                 value: 'Sign In',
-            //                 type: 'button',
-            //                 action: () => this.props.actions.saveProfile()
-            //             }
-            //         ]}
-            //         onUpdate={this.props.actions.updateInput}
-            //     />
-            // </Card>
         )
     }
 }

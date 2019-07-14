@@ -3,21 +3,22 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
-import uniq from 'lodash.uniqueid';
 
 import Card from '../pure/Card';
 import Label from '../pure/Label';
 import Input from '../pure/Input';
 import Button from '../pure/Button';
 
+import { uniqid } from '../utils/util';
 import { addOptionToSurveyForm, removeOptionFromSurveyForm, updateSurveyInput } from '../actions/form';
 import { saveSurvey, fetchSurveys, saveAnswer, fetchAnswers } from '../apis/api';
 import { toggleSurveyForm, toggleSurvey } from '../actions/survey';
 
 const Survey = props => {
-    const { index, mode, form, actions, name, profile, answers } = props;
-    let { _id, question, options, show = true } = form;
+    const { index, mode, form, actions, name, profile, answers, inCreate, pageNumber, pageSize} = props;
+    let { _id, question, options, show = false } = form;
     let checked = false;
+    const pagedIndex = (pageNumber - 1) * pageSize + index;
 
     if( mode === 'preview' ){
         const answer = answers.find( answer => answer.name === profile  && answer.survey_id === _id );
@@ -38,10 +39,10 @@ const Survey = props => {
         <Card css='survey'>
             <section className='survey_question'>
                 <div className='survey_question_header'>
-                    <Label css='survey_question_label' htmlFor='survey_question'>{`Question ${checked ? '- Answered' : ''}`}</Label>
+                    <Label css='survey_question_label' htmlFor='survey_question'>{`Question ${checked ? '- (Answered)' : ''}`}</Label>
                     {
                         mode === 'edit' ? (<Button css='survey_cancel_button' onClick={actions.toggleSurveyForm}>X</Button>) : 
-                        (<Button css='survey_cancel_button' onClick={() => actions.toggleSurvey(index)}>{ show ? 'Collapse' : 'Expand' }</Button>)
+                        (<Button css='survey_cancel_button' onClick={() => actions.toggleSurvey(pagedIndex)}>{ show ? 'Collapse' : 'Expand' }</Button>)
                     }
                 </div>
                 <Input 
@@ -53,7 +54,7 @@ const Survey = props => {
                 />
             </section>
             {
-                show && (
+                (inCreate || show )&& (
                     <section className='survey_options'>
                         <Label css='survey_options_label' htmlFor={name}>Options</Label>
                         {
@@ -109,14 +110,17 @@ class Home extends Component {
     }
 
     render(){
-        const { name, inCreate = false, surveys = [], answers = [] } = this.props;
+        const { name, inCreate = false, surveys = [], answers = [], pageNumber, pageSize } = this.props;
+        const start = (pageNumber - 1) * pageSize;
+        const end = start + pageSize;
+        const pagedSurveys = surveys.slice( start, end );
 
         return (
             <section className='home'>
                 {
                     inCreate && (
                         <React.Fragment>
-                            <Survey actions={this.props.actions} form={this.props.form} mode='edit'/>
+                            <Survey actions={this.props.actions} form={this.props.form} mode='edit' inCreate={inCreate}/>
                             {
                                 surveys.length > 0 && <hr/>
                             }
@@ -124,13 +128,27 @@ class Home extends Component {
                     )
                 }
                 {
-                    surveys.length === 0  && !inCreate && (<Label css='no_survey_label'>No surveys available</Label>)
+                    pagedSurveys.length === 0  && !inCreate && (<Label css='no_survey_label'>No surveys available</Label>)
                 }
                 {
-                    surveys.map(
+                    pagedSurveys.map(
                         (survey, index) => {
-                            const id = uniq('survey_');
-                            return (<Survey index={index} key={id} profile={name} answers={answers} name={id} css='survey_item' actions={this.props.actions} form={survey} mode='preview'/>)
+                            const id = uniqid();
+                            return (
+                                <Survey 
+                                    index={index} 
+                                    key={id} 
+                                    profile={name} 
+                                    answers={answers} 
+                                    name={id} 
+                                    css='survey_item' 
+                                    actions={this.props.actions} 
+                                    form={survey} 
+                                    mode='preview'
+                                    pageNumber={pageNumber}
+                                    pageSize={pageSize}
+                                />
+                            )
                         }
                     )
                 }
@@ -145,7 +163,9 @@ const mapStateToProps = state => {
         inCreate: get(state, ['survey', 'inCreate'], false),
         form: get(state, ['form', 'survey'], {}),
         surveys: get(state, ['survey', 'items'], []),
-        answers: get(state, ['answer', 'items'], [])
+        answers: get(state, ['answer', 'items'], []),
+        pageNumber: get(state, ['pageable', 'number'], 1),
+        pageSize: get(state, ['pageable', 'size'], 5),
     }
 }
 

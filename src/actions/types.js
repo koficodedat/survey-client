@@ -21,3 +21,6 @@ export const SAVE_ANSWER = 'SAVE_ANSWER';
 export const UPDATE_ANSWER = 'UPDATE_ANSWER';
 export const FETCH_ANSWERS = 'FETCH_ANSWERS';
 export const SET_ANSWERS = 'SET_ANSWERS';
+
+export const SET_PAGE_SIZE = 'SET_PAGE_SIZE';
+export const SET_PAGE_NUMBER = 'SET_PAGE_NUMBER';
