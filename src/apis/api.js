@@ -11,7 +11,7 @@ export const saveProfile = () => (dispatch, getState) => {
     const name = get(getState(), ['form', 'login', 'value'], null);
 
     if( name !== null ) {
-        ax.post(`/user/${name}`)
+        return ax.post(`/user/${name}`)
             .then(
                 () => {
                     dispatch({ type: SAVE_PROFILE });
@@ -25,17 +25,19 @@ export const saveProfile = () => (dispatch, getState) => {
 export const saveSurvey = () => (dispatch, getState) => {
     let survey = get(getState(), ['form', 'survey'], {});
 
+    const options = survey.options.filter( option => option.value !== '' );
+
     if( 
         survey !== {} && 
         survey.question.value !== '' && 
-        survey.options.filter( option => option.value !== '' ).length !== 0 
+        options.length !== 0 
     ) {
         survey = {
             ...survey,
-            options: survey.options.filter( option => option.value !== '' )
+            options
         };
 
-        ax.post(`/survey`, survey)
+        return ax.post(`/survey`, survey)
             .then(
                 () => {
                     dispatch({ type: SAVE_SURVEY });
@@ -48,7 +50,7 @@ export const saveSurvey = () => (dispatch, getState) => {
 }
 
 export const fetchSurveys = () => dispatch => {
-    ax.get(`/survey`)
+    return ax.get(`/survey`)
         .then(
             response => {
                 dispatch({ type: FETCH_SURVEYS });
@@ -65,7 +67,7 @@ export const saveAnswer = (survey_id, option_id) => (dispatch, getState) => {
 
     if( name !== null ){
         if( answer_exists ){
-            ax.put(`/answer?ids=${name}_${survey_id}`, { name, survey_id, option_id })
+            return ax.put(`/answer?ids=${name}_${survey_id}`, { name, survey_id, option_id })
                 .then(
                     () => {
                         dispatch({ type: UPDATE_ANSWER });
@@ -75,7 +77,7 @@ export const saveAnswer = (survey_id, option_id) => (dispatch, getState) => {
                 .catch( error => console.error(error) )
         }
         else {
-            ax.post(`/answer`, { name, survey_id, option_id })
+            return ax.post(`/answer`, { name, survey_id, option_id })
                 .then(
                     () => {
                         dispatch({ type: SAVE_ANSWER });
@@ -88,7 +90,7 @@ export const saveAnswer = (survey_id, option_id) => (dispatch, getState) => {
 }
 
 export const fetchAnswers = () => dispatch => {
-    ax.get(`/answer`)
+    return ax.get(`/answer`)
         .then(
             response => {
                 dispatch({ type: FETCH_ANSWERS });

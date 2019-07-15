@@ -12,7 +12,7 @@ export default {
     answer: {
         items: []
     },
-    forms: {
+    form: {
         login: {
             label: 'Name',
             type: 'text',

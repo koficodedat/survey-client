@@ -7,7 +7,7 @@ import { UPDATE_LOGIN_INPUT, ADD_OPTION_TO_SURVEY_FORM, REMOVE_OPTION_FROM_SURVE
 
 import init_state from '../store/state';
 
-const form = (state = init_state.forms, action) => {
+const form = (state = init_state.form, action) => {
     const cloned = clone(state);
     const { type, payload = {} } = action;
     const { id, path, value } = payload;

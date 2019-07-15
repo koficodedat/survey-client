@@ -20,13 +20,14 @@ class Secure extends Component {
     }
 
     render(){
+        const { hasUser, hasSurveys } = this.props;
         return (
             <React.Fragment>
                 <AppBar history={this.props.history}/>
                 <section className='root_section'>
                     {this.props.children}
                 </section>
-                <FooterBar/>
+                { (hasUser && hasSurveys ) && <FooterBar/> }
             </React.Fragment> 
         );
     }
@@ -38,7 +39,8 @@ Secure.propTypes = {
 
 const mapStateToProps = state => {
 	return {
-        hasUser: get(state, ['profile', 'hasUser'], false)
+        hasUser: get(state, ['profile', 'hasUser'], false),
+        hasSurveys: get(state, ['survey', 'items'], []).length > 0,
     }
 }
 
