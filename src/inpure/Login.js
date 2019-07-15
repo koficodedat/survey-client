@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import PropTypes from 'prop-types';
 import get from 'lodash.get';
 
 import Card from '../pure/Card';
