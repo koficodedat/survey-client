@@ -8,6 +8,7 @@ import Button from '../pure/Button';
 
 import { setProfile, unsetProfile } from '../actions/profile';
 import { toggleSurveyForm } from '../actions/survey';
+import { setPageNumber, setPageSize } from '../actions/pageable';
 
 class AppBar extends Component {
     
@@ -23,7 +24,11 @@ class AppBar extends Component {
                     this.props.hasUser ?
                     <section>
                         <Button css='app_bar_button' onClick={this.props.actions.toggleSurveyForm}>Add Survey</Button>
-                        <Button css='app_bar_button' onClick={() => this.props.actions.unsetProfile(this.props.history)}>
+                        <Button css='app_bar_button' onClick={() => {
+                            this.props.actions.unsetProfile(this.props.history);
+                            this.props.actions.setPageNumber(1);
+                            this.props.actions.setPageSize(5);
+                        }}>
                             <span className='profile_name'>{this.props.name}</span> - Logout
                         </Button>
                     </section> :
@@ -44,7 +49,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return { 
-        actions: bindActionCreators({ setProfile, toggleSurveyForm, unsetProfile }, dispatch) 
+        actions: bindActionCreators({ setProfile, toggleSurveyForm, unsetProfile, setPageNumber, setPageSize }, dispatch) 
     }
 }
 
