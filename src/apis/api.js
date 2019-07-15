@@ -8,9 +8,9 @@ import { setAnswers } from '../actions/answer';
 import { resetSurveyForm } from '../actions/form';
 
 export const saveProfile = () => (dispatch, getState) => {
-    const name = get(getState(), ['form', 'login', 'value'], null);
+    const name = get(getState(), ['form', 'login', 'value'], '');
 
-    if( name !== null ) {
+    if( name !== '' ) {
         return ax.post(`/user/${name}`)
             .then(
                 () => {
