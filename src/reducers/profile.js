@@ -7,7 +7,8 @@ import init_state from '../store/state';
 
 const profile = (state = init_state.profile, action) => {
     const cloned = clone(state);
-    const { type, payload } = action;
+    const { type, payload = {} } = action;
+    const { name } = payload;
 
     switch(type){
         case VALIDATE_PROFILE:
@@ -16,8 +17,6 @@ const profile = (state = init_state.profile, action) => {
 
             return cloned;
         case UPDATE_PROFILE:
-            const { name } = payload;
-
             window.localStorage.setItem('_name', name);
 
             set(cloned, 'name', name);

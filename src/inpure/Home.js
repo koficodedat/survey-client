@@ -44,13 +44,19 @@ const Survey = props => {
                         (<Button css='survey_cancel_button' onClick={() => actions.toggleSurvey(pagedIndex)}>{ show ? 'Collapse' : 'Expand' }</Button>)
                     }
                 </div>
-                <Input 
-                    css='survey_question_input survey_question_item' 
-                    name='survey_question'
-                    disabled={ mode !== 'edit' } 
-                    value={question.value} 
-                    onUpdate={(event) => actions.updateSurveyInput('question.value', event.target.value)}
-                />
+                {
+                   mode === 'edit' ? (
+                        <Input 
+                            css='survey_question_input survey_question_item' 
+                            name='survey_question'
+                            value={question.value} 
+                            onUpdate={(event) => actions.updateSurveyInput('question.value', event.target.value)}
+                        />
+                   ) :
+                   (
+                       <Label>{question.value}</Label>
+                   )
+                }
             </section>
             {
                 (inCreate || show )&& (
